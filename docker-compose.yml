@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  nginx:
+    image: nginx:alpine
+    restart: unless-stopped
+    ports:
+      - "8000:80"
+    volumes:
+      - ./:/var/www/
+      - ./nginx/conf.d:/etc/nginx/conf.d/
+  app:
+    restart: unless-stopped
+    build: .
+    volumes:
+      - .:/app
